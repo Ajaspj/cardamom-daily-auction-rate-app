@@ -1,4 +1,4 @@
-# cardamomrate
+# cardamom daily price 
 
 A new Flutter project.
 
