@@ -142,10 +142,22 @@ class _CardamomScreenState extends State<CardamomScreen> {
                                 style: Theme.of(context).textTheme.bodyMedium),
                             Text('Quantity Sold: ${data.qtySold}',
                                 style: Theme.of(context).textTheme.bodyMedium),
-                            Text('Max Price: ${data.maxPrice}',
-                                style: Theme.of(context).textTheme.bodyMedium),
-                            Text('Average Price: ${data.avgPrice}',
-                                style: Theme.of(context).textTheme.bodyMedium),
+                            Text(
+                              'Max Price: ${data.maxPrice}',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.red, // Red for max price
+                              ),
+                            ),
+                            Text(
+                              'Average Price: ${data.avgPrice}',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.blue, // Blue for average price
+                              ),
+                            ),
                             Text('Type: ${data.type}',
                                 style: Theme.of(context).textTheme.bodyMedium),
                           ],
