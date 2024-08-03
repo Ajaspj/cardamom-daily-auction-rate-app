@@ -34,10 +34,8 @@ class CardamomDataProvider with ChangeNotifier {
 
     var connectivityResult = await Connectivity().checkConnectivity();
     if (connectivityResult == ConnectivityResult.none) {
-      print('No internet connection. Loading data from local storage.');
       await loadDataFromLocal();
     } else {
-      print('Internet connection available. Fetching data from API.');
       await fetchFromApi();
     }
   }
@@ -58,6 +56,7 @@ class CardamomDataProvider with ChangeNotifier {
       _currentPage++;
       await _saveDataToLocal();
     } catch (e) {
+      // Handle specific errors or log them
       print('Error fetching data: $e');
       _hasMoreData = false;
     } finally {
@@ -71,7 +70,6 @@ class CardamomDataProvider with ChangeNotifier {
     String dataString =
         json.encode(_cardamomData.map((item) => item.toJson()).toList());
     await prefs.setString('cardamomData', dataString);
-    print('Data saved to SharedPreferences');
   }
 
   Future<void> loadDataFromLocal() async {
@@ -82,10 +80,6 @@ class CardamomDataProvider with ChangeNotifier {
       _cardamomData =
           jsonData.map((item) => CardamomData.fromJson(item)).toList();
       notifyListeners();
-      print(
-          'Data loaded from SharedPreferences: ${_cardamomData.length} items');
-    } else {
-      print('No data found in SharedPreferences');
     }
   }
 
@@ -96,17 +90,14 @@ class CardamomDataProvider with ChangeNotifier {
 
     if (response.statusCode == 200) {
       List<dynamic> body = jsonDecode(response.body);
-      print('API response: ${body.length} items');
       return body.map((dynamic item) => CardamomData.fromJson(item)).toList();
     } else {
-      print('Failed to load data from API: ${response.statusCode}');
-      throw Exception('Failed to load data');
+      throw Exception('Failed to load data from API: ${response.statusCode}');
     }
   }
 
   void _startPeriodicFetch() {
     _fetchTimer = Timer.periodic(Duration(minutes: 5), (timer) async {
-      print('Fetching new data from API');
       await fetchCardamomData(refresh: true);
     });
   }

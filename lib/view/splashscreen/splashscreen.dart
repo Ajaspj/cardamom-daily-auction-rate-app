@@ -32,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Image.asset(
           "assets/images/cdmlogo.png",
           scale: 1.0,
-          color: theme.colorScheme.onSurface,
+          // color: theme.colorScheme.onSurface,
           colorBlendMode: BlendMode.modulate,
         ),
       ),
