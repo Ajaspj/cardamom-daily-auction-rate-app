@@ -34,4 +34,18 @@ class CardamomData {
       type: json['type'],
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'sl': sl,
+      'date': date,
+      'Auctioneer': auctioneer,
+      'Lots': lots,
+      'Total_Arrived': totalArrived,
+      'Qty_Sold': qtySold,
+      'MaxPrice': maxPrice,
+      'Avg_Price': avgPrice,
+      'type': type,
+    };
+  }
 }

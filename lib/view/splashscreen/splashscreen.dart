@@ -11,25 +11,31 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    Future.delayed(const Duration(seconds: 3)).then((value) {
-      Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => CardamomScreen(),
-          ));
-    });
     super.initState();
+    Future.delayed(const Duration(seconds: 1)).then((value) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => CardamomScreen(),
+        ),
+      );
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+
     return Scaffold(
-      backgroundColor: Colors.tealAccent,
+      backgroundColor: theme.colorScheme.surface,
       body: Center(
-          child: Image.asset(
-        "assets/images/cdmlogo.png",
-        scale: 1.0,
-      )),
+        child: Image.asset(
+          "assets/images/cdmlogo.png",
+          scale: 1.0,
+          color: theme.colorScheme.onSurface,
+          colorBlendMode: BlendMode.modulate,
+        ),
+      ),
     );
   }
 }
